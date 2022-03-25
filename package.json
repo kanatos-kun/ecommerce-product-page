@@ -1,0 +1,28 @@
+{
+  "name": "ecommerce-product-page-main",
+  "version": "1.0.0",
+  "description": "![Design preview for the E-commerce product page coding challenge](./design/desktop-preview.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanatos-kun/ecommerce-product-page.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kanatos-kun/ecommerce-product-page/issues"
+  },
+  "homepage": "https://github.com/kanatos-kun/ecommerce-product-page#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
+    "bootstrap": "^5.1.3",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15",
+    "react-bootstrap": "^2.2.1"
+  }
+}

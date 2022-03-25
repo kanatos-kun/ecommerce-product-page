@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@200&display=swap");
+
+body {
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+.nav-item:hover {
+  border-bottom: orange solid 3px;
+}
+
+.navbar {
+  padding-bottom: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.avatar-image:active,
+.avatar-image:hover {
+  border: orange 4px solid;
+  border-radius: 50%;
+}
+
+.cart:active {
+  color: orange;
+}
+
+.image-vitrine {
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5%;
+}
+
+.image-thumbnail {
+  border-radius: 10%;
+  width: 8rem;
+  margin-right: 30px;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.colortext-orange {
+  color: hsl(26, 100%, 55%);
+  margin-top: 100px;
+}
+
+.minus {
+  background: #f7f8fd;
+  font-size: 2.5em;
+  color: orange;
+  text-decoration: none;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.plus {
+  background: #f7f8fd;
+  font-size: 2.5em;
+  color: orange;
+  text-decoration: none;
+  padding: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-right: 50px;
+}
+
+.number-input {
+  margin-top: 200px;
+  text-align: center;
+  background: #f7f8fd;
+  border: none;
+  padding-top: 2em;
+  padding-bottom: 0.9em;
+  width: 5em;
+  font-weight: bolder;
+}
+
+.cart {
+  background: orange;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-right: 30px;
+  padding-left: 30px;
+  font-weight: bolder;
+}
+
+.price {
+  font-weight: bolder;
+  font-size: 24px;
+}
