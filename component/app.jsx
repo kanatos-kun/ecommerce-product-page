@@ -64,6 +64,7 @@ window.onload = function () {
           <img
             src="images/image-product-1.jpg"
             className="mt-5 image-vitrine"
+            onClick={props.toggleLightBox}
           />
         </div>
 
@@ -71,6 +72,7 @@ window.onload = function () {
           <img
             src="images/image-product-2.jpg"
             className="mt-5 image-vitrine"
+            onClick={props.toggleLightBox}
           />
         </div>
 
@@ -78,6 +80,7 @@ window.onload = function () {
           <img
             src="images/image-product-3.jpg"
             className="mt-5 image-vitrine"
+            onClick={props.toggleLightBox}
           />
         </div>
 
@@ -85,6 +88,7 @@ window.onload = function () {
           <img
             src="images/image-product-4.jpg"
             className="mt-5 image-vitrine"
+            onClick={props.toggleLightBox}
           />
         </div>
       </div>
@@ -128,66 +132,105 @@ window.onload = function () {
     );
   }
 
-  class ImageThumbnail extends React.Component {
-    constructor() {
-      super();
-      this.handleOnClick = this.handleOnClick.bind(this);
-    }
-
-    handleOnClick(i) {
-      this.props.currentSlide(i);
-    }
-
-    render() {
-      return (
-        <div className="col-6">
+  function LightBox(props) {
+    return (
+      <div className="modal-lightBox">
+        <a
+          className="close-modal-lightBox"
+          onClick={() => props.toggleLightBox()}
+          href="#"
+        >
+          X
+        </a>
+        <div className="center-block">
+          <span>
+            <a href="#">
+              <img className="modal-previous" src="images/icon-previous.svg" />
+            </a>
+          </span>
           <img
-            src="images/image-product-1-thumbnail.jpg"
-            onClick={() => this.handleOnClick(1)}
-            className="demo cursor mt-5 image-thumbnail"
+            className="image-vitrine-modal"
+            width="700px"
+            height="700px"
+            src="images/image-product-1.jpg"
           />
-          <img
-            src="images/image-product-2-thumbnail.jpg"
-            className="demo cursor mt-5 image-thumbnail"
-            onClick={() => this.handleOnClick(2)}
-          />
-
-          <img
-            src="images/image-product-3-thumbnail.jpg"
-            className="demo cursor mt-5 image-thumbnail"
-            onClick={() => this.handleOnClick(3)}
-          />
-          <img
-            src="images/image-product-4-thumbnail.jpg"
-            className="demo cursor mt-5 image-thumbnail"
-            onClick={() => this.handleOnClick(4)}
-          />
+          <span>
+            <a href="#">
+              <img className="modal-next" src="images/icon-next.svg" />
+            </a>
+          </span>
         </div>
-      );
-    }
+      </div>
+    );
+  }
+
+  function ImageThumbnail(props) {
+    return (
+      <div className="col-6">
+        <img
+          src="images/image-product-1-thumbnail.jpg"
+          onClick={() => props.currentSlide(1)}
+          className="demo cursor mt-5 image-thumbnail"
+        />
+        <img
+          src="images/image-product-2-thumbnail.jpg"
+          className="demo cursor mt-5 image-thumbnail"
+          onClick={() => props.currentSlide(2)}
+        />
+
+        <img
+          src="images/image-product-3-thumbnail.jpg"
+          className="demo cursor mt-5 image-thumbnail"
+          onClick={() => props.currentSlide(3)}
+        />
+        <img
+          src="images/image-product-4-thumbnail.jpg"
+          className="demo cursor mt-5 image-thumbnail"
+          onClick={() => props.currentSlide(4)}
+        />
+      </div>
+    );
   }
 
   class App extends React.Component {
     constructor() {
       super();
-      this.state = { slideNumber: 1 };
+      this.state = { slideNumber: 1, toggleLightBox: false };
       this.currentSlide = this.currentSlide.bind(this);
+      this.toggleLightBox = this.toggleLightBox.bind(this);
     }
 
     currentSlide(i) {
       this.setState({ slideNumber: i });
     }
+    nextSlide() {}
+    previousSlide() {}
+
+    toggleLightBox() {
+      console.log(this.state.toggleLightBox);
+      this.setState({ toggleLightBox: !this.state.toggleLightBox });
+    }
 
     render() {
       return (
-        <div className="container">
-          <MyNavBar />
-          <div className="row">
-            <ImageVitrine slideNumber={this.state.slideNumber} />
-            <TextInformation />
-            <ImageThumbnail currentSlide={this.currentSlide} />
+        <React.Fragment>
+          {this.state.toggleLightBox ? (
+            <LightBox toggleLightBox={this.toggleLightBox} />
+          ) : (
+            ""
+          )}
+          <div className="container">
+            <MyNavBar />
+            <div className="row">
+              <ImageVitrine
+                slideNumber={this.state.slideNumber}
+                toggleLightBox={this.toggleLightBox}
+              />
+              <TextInformation />
+              <ImageThumbnail currentSlide={this.currentSlide} />
+            </div>
           </div>
-        </div>
+        </React.Fragment>
       );
     }
   }

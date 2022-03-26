@@ -110,7 +110,8 @@ window.onload = function () {
         { className: props.slideNumber == 1 ? "" : "mySlides" },
         React.createElement("img", {
           src: "images/image-product-1.jpg",
-          className: "mt-5 image-vitrine"
+          className: "mt-5 image-vitrine",
+          onClick: props.toggleLightBox
         })
       ),
       React.createElement(
@@ -118,7 +119,8 @@ window.onload = function () {
         { className: props.slideNumber == 2 ? "" : "mySlides" },
         React.createElement("img", {
           src: "images/image-product-2.jpg",
-          className: "mt-5 image-vitrine"
+          className: "mt-5 image-vitrine",
+          onClick: props.toggleLightBox
         })
       ),
       React.createElement(
@@ -126,7 +128,8 @@ window.onload = function () {
         { className: props.slideNumber == 3 ? "" : "mySlides" },
         React.createElement("img", {
           src: "images/image-product-3.jpg",
-          className: "mt-5 image-vitrine"
+          className: "mt-5 image-vitrine",
+          onClick: props.toggleLightBox
         })
       ),
       React.createElement(
@@ -134,7 +137,8 @@ window.onload = function () {
         { className: props.slideNumber == 4 ? "" : "mySlides" },
         React.createElement("img", {
           src: "images/image-product-4.jpg",
-          className: "mt-5 image-vitrine"
+          className: "mt-5 image-vitrine",
+          onClick: props.toggleLightBox
         })
       )
     );
@@ -206,77 +210,99 @@ window.onload = function () {
     );
   }
 
-  var ImageThumbnail = function (_React$Component) {
-    _inherits(ImageThumbnail, _React$Component);
+  function LightBox(props) {
+    return React.createElement(
+      "div",
+      { className: "modal-lightBox" },
+      React.createElement(
+        "a",
+        {
+          className: "close-modal-lightBox",
+          onClick: function onClick() {
+            return props.toggleLightBox();
+          },
+          href: "#"
+        },
+        "X"
+      ),
+      React.createElement(
+        "div",
+        { className: "center-block" },
+        React.createElement(
+          "span",
+          null,
+          React.createElement(
+            "a",
+            { href: "#" },
+            React.createElement("img", { className: "modal-previous", src: "images/icon-previous.svg" })
+          )
+        ),
+        React.createElement("img", {
+          className: "image-vitrine-modal",
+          width: "700px",
+          height: "700px",
+          src: "images/image-product-1.jpg"
+        }),
+        React.createElement(
+          "span",
+          null,
+          React.createElement(
+            "a",
+            { href: "#" },
+            React.createElement("img", { className: "modal-next", src: "images/icon-next.svg" })
+          )
+        )
+      )
+    );
+  }
 
-    function ImageThumbnail() {
-      _classCallCheck(this, ImageThumbnail);
+  function ImageThumbnail(props) {
+    return React.createElement(
+      "div",
+      { className: "col-6" },
+      React.createElement("img", {
+        src: "images/image-product-1-thumbnail.jpg",
+        onClick: function onClick() {
+          return props.currentSlide(1);
+        },
+        className: "demo cursor mt-5 image-thumbnail"
+      }),
+      React.createElement("img", {
+        src: "images/image-product-2-thumbnail.jpg",
+        className: "demo cursor mt-5 image-thumbnail",
+        onClick: function onClick() {
+          return props.currentSlide(2);
+        }
+      }),
+      React.createElement("img", {
+        src: "images/image-product-3-thumbnail.jpg",
+        className: "demo cursor mt-5 image-thumbnail",
+        onClick: function onClick() {
+          return props.currentSlide(3);
+        }
+      }),
+      React.createElement("img", {
+        src: "images/image-product-4-thumbnail.jpg",
+        className: "demo cursor mt-5 image-thumbnail",
+        onClick: function onClick() {
+          return props.currentSlide(4);
+        }
+      })
+    );
+  }
 
-      var _this = _possibleConstructorReturn(this, (ImageThumbnail.__proto__ || Object.getPrototypeOf(ImageThumbnail)).call(this));
-
-      _this.handleOnClick = _this.handleOnClick.bind(_this);
-      return _this;
-    }
-
-    _createClass(ImageThumbnail, [{
-      key: "handleOnClick",
-      value: function handleOnClick(i) {
-        this.props.currentSlide(i);
-      }
-    }, {
-      key: "render",
-      value: function render() {
-        var _this2 = this;
-
-        return React.createElement(
-          "div",
-          { className: "col-6" },
-          React.createElement("img", {
-            src: "images/image-product-1-thumbnail.jpg",
-            onClick: function onClick() {
-              return _this2.handleOnClick(1);
-            },
-            className: "demo cursor mt-5 image-thumbnail"
-          }),
-          React.createElement("img", {
-            src: "images/image-product-2-thumbnail.jpg",
-            className: "demo cursor mt-5 image-thumbnail",
-            onClick: function onClick() {
-              return _this2.handleOnClick(2);
-            }
-          }),
-          React.createElement("img", {
-            src: "images/image-product-3-thumbnail.jpg",
-            className: "demo cursor mt-5 image-thumbnail",
-            onClick: function onClick() {
-              return _this2.handleOnClick(3);
-            }
-          }),
-          React.createElement("img", {
-            src: "images/image-product-4-thumbnail.jpg",
-            className: "demo cursor mt-5 image-thumbnail",
-            onClick: function onClick() {
-              return _this2.handleOnClick(4);
-            }
-          })
-        );
-      }
-    }]);
-
-    return ImageThumbnail;
-  }(React.Component);
-
-  var App = function (_React$Component2) {
-    _inherits(App, _React$Component2);
+  var App = function (_React$Component) {
+    _inherits(App, _React$Component);
 
     function App() {
       _classCallCheck(this, App);
 
-      var _this3 = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+      var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-      _this3.state = { slideNumber: 1 };
-      _this3.currentSlide = _this3.currentSlide.bind(_this3);
-      return _this3;
+      _this.state = { slideNumber: 1, toggleLightBox: false };
+      _this.currentSlide = _this.currentSlide.bind(_this);
+      _this.toggleLightBox = _this.toggleLightBox.bind(_this);
+      return _this;
     }
 
     _createClass(App, [{
@@ -285,18 +311,38 @@ window.onload = function () {
         this.setState({ slideNumber: i });
       }
     }, {
+      key: "nextSlide",
+      value: function nextSlide() {}
+    }, {
+      key: "previousSlide",
+      value: function previousSlide() {}
+    }, {
+      key: "toggleLightBox",
+      value: function toggleLightBox() {
+        console.log(this.state.toggleLightBox);
+        this.setState({ toggleLightBox: !this.state.toggleLightBox });
+      }
+    }, {
       key: "render",
       value: function render() {
         return React.createElement(
-          "div",
-          { className: "container" },
-          React.createElement(MyNavBar, null),
+          React.Fragment,
+          null,
+          this.state.toggleLightBox ? React.createElement(LightBox, { toggleLightBox: this.toggleLightBox }) : "",
           React.createElement(
             "div",
-            { className: "row" },
-            React.createElement(ImageVitrine, { slideNumber: this.state.slideNumber }),
-            React.createElement(TextInformation, null),
-            React.createElement(ImageThumbnail, { currentSlide: this.currentSlide })
+            { className: "container" },
+            React.createElement(MyNavBar, null),
+            React.createElement(
+              "div",
+              { className: "row" },
+              React.createElement(ImageVitrine, {
+                slideNumber: this.state.slideNumber,
+                toggleLightBox: this.toggleLightBox
+              }),
+              React.createElement(TextInformation, null),
+              React.createElement(ImageThumbnail, { currentSlide: this.currentSlide })
+            )
           )
         );
       }
